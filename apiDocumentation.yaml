@@ -1,0 +1,88 @@
+swagger: "2.0"
+info:
+  title: "API de Personajes"
+  version: "1.0.0"
+paths:
+  /api/people/{id}:
+    get:
+      summary: "Obtener un personaje"
+      description: "Retorna información detallada de un personaje específico."
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Detalle del personaje"
+          schema:
+            $ref: '#/definitions/Personaje'
+        500:
+          description: "Error al obtener el personaje"
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: "Crear/Actualizar un personaje"
+      description: "Crea o actualiza la información de un personaje."
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Personaje creado o actualizado con éxito"
+          schema:
+            $ref: '#/definitions/PostResponse'
+definitions:
+  Personaje:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      nombre:
+        type: "string"
+      altura:
+        type: "string"
+      masa:
+        type: "string"
+      color_de_cabello:
+        type: "string"
+      color_de_piel:
+        type: "string"
+      color_de_ojos:
+        type: "string"
+      año_de_nacimiento:
+        type: "string"
+      género:
+        type: "string"
+      mundo_natal:
+        type: "string"
+      peliculas:
+        type: "string"
+      especies:
+        type: "string"
+      vehiculos:
+        type: "string"
+      naves_estelares:
+        type: "string"
+      creado:
+        type: "string"
+        format: "date-time"
+      editado:
+        type: "string"
+        format: "date-time"
+      url:
+        type: "string"
+  Error:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+  PostResponse:
+    type: "object"
+    properties:
+      mensaje:
+        type: "string"

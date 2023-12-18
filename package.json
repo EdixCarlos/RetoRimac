@@ -1,0 +1,42 @@
+{
+  "name": "retorimac",
+  "version": "1.0.0",
+  "description": "<!-- title: 'AWS NodeJS Example' description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.' layout: Doc framework: v3 platform: AWS language: nodeJS priority: 1 authorLink: 'https://github.com/serverless' authorName: 'Serverless, inc.' authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4' -->",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && serverless offline",
+    "test": "mocha -r ts-node/register 'test/**/*.spec.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.130",
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.3.11",
+    "@types/jasmine": "^5.1.4",
+    "@types/lambda-tester": "^4.0.3",
+    "@types/mocha": "^10.0.6",
+    "@types/mysql": "^2.15.24",
+    "@types/node": "^20.10.4",
+    "@types/sinon": "^17.0.2",
+    "chai": "^4.3.10",
+    "jasmine": "^5.1.0",
+    "lambda-tester": "^4.0.1",
+    "mocha": "^10.2.0",
+    "serverless-aws-documentation": "^1.1.0",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^13.3.2",
+    "serverless-openapi-documentation": "^0.4.0",
+    "sinon": "^17.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "mysql": "^2.18.1"
+  }
+}

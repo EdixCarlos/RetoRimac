@@ -1,0 +1,57 @@
+org: marimber
+app: retorimac
+service: retorimac
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  environment:
+    DB_HOST: retorimac-dev-rdsretorimac-ypklslbkyruf.cv42o2we2igo.us-east-1.rds.amazonaws.com
+    DB_USER: root
+    DB_PASSWORD: root123456
+    DB_NAME: retoRimac
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - rds:DescribeDBInstances
+        - rds:Connect
+      Resource: 
+        - "arn:aws:rds:us-east-1:443481253771:db:retoRimac"
+
+functions:
+  getEndpoint:
+    handler: dist/app/handlers/personajeHandlers.getPersonajeHandler
+    timeout: 30
+    events:
+      - http:
+          path: api/people/{id}
+          method: get
+          cors: true
+  postEndpoint:
+    handler: dist/app/handlers/personajeHandlers.postPersonajeHandler
+    timeout: 30
+    events:
+      - http:
+          path: api/people/{id}
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    RDSretoRimac:
+      Type: "AWS::RDS::DBInstance"
+      Properties:
+        DBName: "retoRimac"
+        AllocatedStorage: 10
+        DBInstanceClass: "db.t2.micro"
+        Engine: "MySQL"
+        MasterUsername: ${env:DB_USER,'root'}
+        MasterUserPassword: ${env:DB_PASSWORD,'root123456'}
+        PubliclyAccessible: false
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
