@@ -3,7 +3,7 @@ info:
   title: "API de Personajes"
   version: "1.0.0"
 paths:
-  /api/people/{id}:
+  https://7jwcksk68h.execute-api.us-east-1.amazonaws.com/dev/api/people/{id}:
     get:
       summary: "Obtener un personaje"
       description: "Retorna información detallada de un personaje específico."

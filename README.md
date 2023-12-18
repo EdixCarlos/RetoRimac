@@ -1,72 +1,34 @@
-<!--
-title: 'AWS NodeJS Example'
-description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-priority: 1
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+# API de Personajes
 
+## Descripción
+Esta API permite obtener personajes de SWAPI con las claves españolizadas.
 
-# Serverless Framework AWS NodeJS Example
+## Endpoints
 
-This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
+### GET /api/people/{id}
+Obtiene la información detallada de un personaje específico.
 
-## Usage
+#### Parámetros
+- `id` (path): ID del personaje
 
-### Deployment
+#### Respuestas
+- 200: Detalle del personaje
+- 500: Error al obtener el personaje
 
-In order to deploy the example, you need to run the following command:
+### POST /api/people/{id}
+Crea o actualiza la información de un personaje.
 
-```
-$ serverless deploy
-```
+#### Parámetros
+- `id` (path): ID del personaje
 
-After running deploy, you should see output similar to:
+#### Respuestas
+- 200: Personaje creado o actualizado con éxito
 
+## Uso
+
+### Obtener un Personaje
+Para obtener un personaje, realiza una solicitud GET a `/api/people/{id}`, reemplazando `{id}` con el ID del personaje.
+
+#### Ejemplo de solicitud
 ```bash
-Deploying aws-node-project to stage dev (us-east-1)
-
-✔ Service deployed to stack aws-node-project-dev (112s)
-
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
-```
-
-### Invocation
-
-After successful deployment, you can invoke the deployed function by using the following command:
-
-```bash
-serverless invoke --function hello
-```
-
-Which should result in response similar to the following:
-
-```json
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
-}
-```
-
-### Local development
-
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
+curl --location 'https://7jwcksk68h.execute-api.us-east-1.amazonaws.com/dev/api/people/1'
